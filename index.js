@@ -54,7 +54,6 @@ client.on('messageCreate', async message => {
     }
 });
 
-client.login(process.env.TOKEN); 
 client.snipes = new Map();
 
 client.on("messageDelete", msg => {
