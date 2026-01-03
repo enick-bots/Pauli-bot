@@ -35,22 +35,29 @@ client.on('ready', () => {
 console.log(`🤖 | Bot encendido con la cuenta de: ${client.user.tag}`);
 });
 
+const handledMessages = new Set();
+
 client.on('messageCreate', async message => {
-    if (message.author.bot) return; 
-    if (!message.content.startsWith(PREFIX)) return; 
+  // 🛡️ anti-duplicado
+  if (handledMessages.has(message.id)) return;
+  handledMessages.add(message.id);
+  setTimeout(() => handledMessages.delete(message.id), 5000);
 
-    const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-    const commandName = args.shift().toLowerCase();
+  // tu lógica normal
+  if (message.author.bot) return;
+  if (!message.content.startsWith(PREFIX)) return;
 
-    const command = client.prefixCommands.get(commandName);
+  const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+  const commandName = args.shift().toLowerCase();
 
-    if (!command) return;
+  const command = client.prefixCommands.get(commandName);
+  if (!command) return;
 
-    try {
-        await command.execute(client, message, args);
-    } catch (error) {
-        console.error(error);
-        message.reply('Hubo un error al ejecutar ese comando!');
+  try {
+    await command.execute(client, message, args);
+  } catch (error) {
+    console.error(error);
+    message.reply('Hubo un error al ejecutar ese comando!');
     }
 });
 
