@@ -83,11 +83,9 @@ module.exports = {
 
             try {
                 if (interaction.customId === "unirme") {
-                    await interaction.member.roles.add(1454019195397214260);
-                    return interaction.reply({
-                        content: "✅ Se te asignó el rol correctamente.",
-                        ephemeral: true
-                    });
+                    await interaction.member.roles.add("1454019195397214260");
+                    await interaction.deferReply({ ephemeral: true });
+await interaction.editReply("✅ Se te asignó el rol correctamente.");
                 }
 
                 if (interaction.customId === "salir") {
