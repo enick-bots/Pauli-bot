@@ -56,6 +56,9 @@ module.exports = {
             { name: "Cooki and Milki", aliases: ["cookiandmilki","cooki","milki","cam"] },
             { name: "Dragon Cannelloni", aliases: ["dragoncannelloni","dc","dragon","drag"] },
             { name: "Garama and Madundung", aliases: ["garamaandmadundung","garama","madundung","gm"] },
+            {name: "Dragon Gingerini", aliases: ["dragongingerini","dg","gingerini"] },
+            {name: "Money Money Reindeer", aliases: ["moneymoneyreindeer","mmr","reindeer"] },
+            {name: "Tuff Toucan", aliases: ["tufftoucan","tt","toucan"] },
         ];
 
         const itemsPerPage = 10;

@@ -9,14 +9,27 @@ module.exports = {
         if (!message.guild) return;
 
         const ROLES_PERMITIDOS_IDS = [
+             "1457164602289688788",
+            "1456498874826100933",
             "1454018670568276029",
+            "1454018600577929216",
+            "1454018510152798342",
             "1454014410816487477",
+            "1454014246403838058",
+            "1454013109634072618",
             "1454013368276095163",
+            "1452495976723124234",
+            "1454024235792990229",
+            "1454024352352702546",
             "1454024494560841758",
             "1454024677226840095",
-            "1454032083986022555",
+            "1454032529056206920",
+            "1454032719720878124",
+            "1454032788692009061",
             "1454032881369485332",
-            "1454033043596644352"
+            "1454032964563239025",
+            "1454033043596644352",
+            "1454032083986022555","1457277032428863548"
         ];
 
         const tieneRolPermitido = message.member.roles.cache
@@ -35,7 +48,8 @@ El middleman que atienda el ticket te ayudará a realizar un trade seguro para a
 
 🔹 **¿Cómo funciona?**  
 • El middleman pedirá un link de SAB  
-• Se entregarán los brainrots **uno por uno**  
+
+• Se entregarán los brainrots **uno por uno** para evitar uso de scripts o robos 
 • Luego el middleman pasará todo a una cuenta segura  
 • Finalmente enviará las partes correspondientes a cada usuario  
 

@@ -35,7 +35,8 @@ module.exports = {
             { name: "Swaggy Bros", aliases: ["swaggybros","swaggy","sb"], A: 40, B: 0.01, C: 3 },
             { name: "Tacorita Bicicleta", aliases: ["tacoritabicicleta","bici","tb"], A: 16.5, B: 0.01, C: 2 },
             { name: "Tang Tang Keletang", aliases: ["tangtangkeletang","ttk","keletang","tang"], A: 33.5, B: 0.02, C: 3 },
-
+            { name:  "Money Money Reindeer", aliases:["moneymoneyreindeer","mmr","reindeer"], A:25, B: 0.01, C: 3},
+            { name: "Tuff Toucan", aliases: ["tufftoucan","tt","toucan"], A: 26, B: 0.01, C: 3.5 },
             // ===== LA =====
             { name: "La Extinct Grande", aliases: ["laextinctgrande","leg","ext"], A: 23.5, B: 0.01, C: 2 },
             { name: "La Gringer Sekolah", aliases: ["gringersekolah","sekolah"], A: 75, B: 0.02, C: 5 },
@@ -60,7 +61,7 @@ module.exports = {
             { name: "Ketchuru and Musturu", aliases: ["ketchuruandmusturu","km","musturu","ketchuru"], A: 42.5, B: 0.02, C: 6.5 },
             { name: "Ketupat Kepat", aliases: ["ketupatkepat","kk","ketupat","kepat"], A: 35, B: 0.01, C: 4 },
             { name: "La Casa Boo", aliases: ["lacasa","lcb","boo","casa"], A: 100, B: 0.03, C: 14 },
-
+            { name: "Dragon Gingerini", aliases: ["dragongingerini","gingerini","dg"], A: 300, B: 0.04, C: 100},
             // ===== CLÁSICOS =====
             { name: "Celularini Viciosini", aliases: ["celulariniviciosini","ccv","celular","vicio"], A: 22.5, B: 0.02, C: 2.5 },
             { name: "Chilin Chili", aliases: ["chillinchili","cc","chili","chill"], A: 25, B: 0.01, C: 5 },
