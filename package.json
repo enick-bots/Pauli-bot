@@ -11,10 +11,20 @@
   },
   "dependencies": {
     "discord.js": "^14.25.1",
-    "dotenv": "^16.6.1"
+    "dotenv": "^16.6.1",
+    "expres": "^0.0.5",
+    "express": "^5.2.1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enick-bots/Pauli-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enick-bots/Pauli-bot/issues"
+  },
+  "homepage": "https://github.com/enick-bots/Pauli-bot#readme"
 }

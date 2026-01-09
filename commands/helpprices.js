@@ -1,13 +1,18 @@
-const { EmbedBuilder } = require("discord.js");
+const {
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle
+} = require("discord.js");
 
 module.exports = {
-    name: "helpprice",
-    description: "Ayuda para ver los precios de los brainrots",
+  name: "helpprices",
+  aliases: ["prices", "helpprice"],
 
-    async execute(client, message) {
+  async execute(client, message) {
 
-        const brainrots = [
-            { name: "Los Bros", aliases: ["losbros","lb","bros","br"] },
+    const brainrots = [
+   { name: "Los Bros", aliases: ["losbros","lb","bros","br"] },
             { name: "Los Hotspotsitos", aliases: ["loshotspotsitos","lhp","hots","potsitos"] },
             { name: "Los Primos", aliases: ["losprimos","lp","primos","prim"] },
             { name: "Los Puggies", aliases: ["lospuggies","pug","puggies"] },
@@ -56,51 +61,78 @@ module.exports = {
             { name: "Cooki and Milki", aliases: ["cookiandmilki","cooki","milki","cam"] },
             { name: "Dragon Cannelloni", aliases: ["dragoncannelloni","dc","dragon","drag"] },
             { name: "Garama and Madundung", aliases: ["garamaandmadundung","garama","madundung","gm"] },
-            {name: "Dragon Gingerini", aliases: ["dragongingerini","dg","gingerini"] },
+            { name: "Dragon Gingerini", aliases: ["dragongingerini","dg","gingerini"] },
             {name: "Money Money Reindeer", aliases: ["moneymoneyreindeer","mmr","reindeer"] },
             {name: "Tuff Toucan", aliases: ["tufftoucan","tt","toucan"] },
-        ];
+            { name: "Skibidi Toilet", aliases: ["skibiditoilet","st","toilet","skibidi"] },
+    ];
 
-        const itemsPerPage = 10;
-        let page = 0;
+    const itemsPerPage = 10;
+    let page = 0;
+    const totalPages = Math.ceil(brainrots.length / itemsPerPage);
 
-        const generateEmbed = () => {
-            const start = page * itemsPerPage;
-            const current = brainrots.slice(start, start + itemsPerPage);
+    const generateEmbed = () => {
+      const start = page * itemsPerPage;
+      const current = brainrots.slice(start, start + itemsPerPage);
 
-            const description = current.map(br =>
-                `⭐ **${br.name}**\n` +
-                `Alias: ${br.aliases.map(a => `\`${a}\``).join(", ")}\n` +
-                `Ej: \`*price ${br.aliases[0]} 100\`\n`
-            ).join("\n");
+      const description = current.map((br, i) =>
+        `**${start + i + 1}. ⭐ ${br.name}**\n` +
+        `Alias: \`${br.aliases.join(", ")}\`\n` +
+        `Ej: \`*price ${br.aliases[0]} 100\`\n`
+      ).join("\n");
 
-            return new EmbedBuilder()
-                .setColor("#2ecc71")
-                .setTitle("📘 AYUDA PARA VER LOS PRECIOS DE TUS BRAINROTS")
-                .setDescription(description)
-                .setFooter({ text: `Página ${page + 1} / ${Math.ceil(brainrots.length / itemsPerPage)}` });
-        };
-
-        const msg = await message.channel.send({ embeds: [generateEmbed()] });
-
-        await msg.react("⬅️");
-        await msg.react("➡️");
-
-        const filter = (reaction, user) =>
-            ["⬅️", "➡️"].includes(reaction.emoji.name) && user.id === message.author.id;
-
-        const collector = msg.createReactionCollector({ filter, time: 60000 });
-
-        collector.on("collect", reaction => {
-            reaction.users.remove(message.author);
-
-            if (reaction.emoji.name === "➡️") {
-                if ((page + 1) * itemsPerPage < brainrots.length) page++;
-            } else if (reaction.emoji.name === "⬅️") {
-                if (page > 0) page--;
-            }
-
-            msg.edit({ embeds: [generateEmbed()] });
+      return new EmbedBuilder()
+        .setTitle("📜 Brainrots – Lista de precios")
+        .setDescription(description)
+        .setColor("#00ffcc")
+        .setFooter({
+          text: `Página ${page + 1} de ${totalPages} • Total: ${brainrots.length} brainrots`
         });
-    }
+    };
+
+    const row = () =>
+      new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId("prev")
+          .setLabel("⬅️")
+          .setStyle(ButtonStyle.Secondary)
+          .setDisabled(page === 0),
+
+        new ButtonBuilder()
+          .setCustomId("next")
+          .setLabel("➡️")
+          .setStyle(ButtonStyle.Secondary)
+          .setDisabled(page === totalPages - 1)
+      );
+
+    const msg = await message.reply({
+      embeds: [generateEmbed()],
+      components: [row()]
+    });
+
+    const collector = msg.createMessageComponentCollector({
+      time: 120000
+    });
+
+    collector.on("collect", async i => {
+      if (i.user.id !== message.author.id) {
+        return i.reply({
+          content: "❌ Solo quien ejecutó el comando puede usar los botones",
+          ephemeral: true
+        });
+      }
+
+      if (i.customId === "prev") page--;
+      if (i.customId === "next") page++;
+
+      await i.update({
+        embeds: [generateEmbed()],
+        components: [row()]
+      });
+    });
+
+    collector.on("end", () => {
+      msg.edit({ components: [] }).catch(() => {});
+    });
+  }
 };

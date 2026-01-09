@@ -37,6 +37,7 @@ module.exports = {
             { name: "Tang Tang Keletang", aliases: ["tangtangkeletang","ttk","keletang","tang"], A: 33.5, B: 0.02, C: 3 },
             { name:  "Money Money Reindeer", aliases:["moneymoneyreindeer","mmr","reindeer"], A:25, B: 0.01, C: 3},
             { name: "Tuff Toucan", aliases: ["tufftoucan","tt","toucan"], A: 26, B: 0.01, C: 3.5 },
+            { name: "Skibidi Toilet", aliases: ["skibiditoilet","st","skibidi","toilet"], A:350, B:0.03, C:300},
             // ===== LA =====
             { name: "La Extinct Grande", aliases: ["laextinctgrande","leg","ext"], A: 23.5, B: 0.01, C: 2 },
             { name: "La Gringer Sekolah", aliases: ["gringersekolah","sekolah"], A: 75, B: 0.02, C: 5 },
